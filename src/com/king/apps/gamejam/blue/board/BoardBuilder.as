@@ -42,7 +42,7 @@ package com.king.apps.gamejam.blue.board
                     tile.AddNeighbour(aboveTile);
                     aboveTile.AddNeighbour(tile);
                 }
-                tileContainer.push();
+                tileContainer.push(tile);
             }
             return new Board(tileContainer);
         }
