@@ -7,18 +7,18 @@ public class BoardBuilder
         public function BoardBuilder() {
         }
 
-        public static function MakeBoard(type : String, resourceLoader : ResourceLoader, columns : int = 9, rows : int = 12) : Board
+        public static function MakeBoard(boardType : String, resourceLoader : ResourceLoader, columns : int = 9, rows : int = 12) : Board
         {
-            switch (type)
+            switch (boardType)
             {
-                case TileType.TRIANGLES:
+                case TileGeometryType.TRIANGLES:
                     break;
 
-                case TileType.RECTANGLES:
+                case TileGeometryType.RECTANGLES:
                     return createRectangularTileBoard(columns, rows, resourceLoader);
                     break;
 
-                case TileType.HEXAGONS:
+                case TileGeometryType.HEXAGONS:
                     break;
             }
 
@@ -27,20 +27,20 @@ public class BoardBuilder
 
         private static function createRectangularTileBoard(columns : int, rows : int, resourceLoader : ResourceLoader) : Board
         {
-            var tileContainer : Vector.<Tile>;
+            var tileContainer : Vector.<Tile> = new Vector.<Tile>();
 
             for (var i : int = 0; i < columns * rows; i++)
             {
                 var xPosition : int = i % columns;
                 var yPosition : int = i / rows;
-                var tile = new Tile(xPosition,yPosition, resourceLoader);
+                var tile : Tile = new Tile(xPosition,yPosition, resourceLoader);
                 if(xPosition != 0) {
-                    var leftTile = tileContainer[i-1];
+                    var leftTile : Tile = tileContainer[i-1];
                     tile.AddNeighbour(leftTile);
                     leftTile.AddNeighbour(tile);
                 }
                 if(yPosition != 0) {
-                    var aboveTile = tileContainer[i-columns];
+                    var aboveTile : Tile = tileContainer[i-columns];
                     tile.AddNeighbour(aboveTile);
                     aboveTile.AddNeighbour(tile);
                 }
