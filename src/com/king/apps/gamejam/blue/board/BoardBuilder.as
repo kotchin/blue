@@ -33,7 +33,7 @@ public class BoardBuilder
             {
                 var xPosition : int = i % columns;
                 var yPosition : int = i / rows;
-                var tile : Tile = new Tile(xPosition,yPosition, resourceLoader);
+                var tile : Tile = new Tile(xPosition *42 + 42/2,yPosition *42  + 42/2, resourceLoader);
                 if(xPosition != 0) {
                     var leftTile : Tile = tileContainer[i-1];
                     tile.AddNeighbour(leftTile);
