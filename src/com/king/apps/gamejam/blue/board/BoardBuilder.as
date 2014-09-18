@@ -31,11 +31,14 @@ public class BoardBuilder
 
         private static function createRectangularTileBoard(columns : int, rows : int, resourceLoader : ResourceLoader) : Vector.<Tile> {
             var tileContainer : Vector.<Tile> = new Vector.<Tile>();
+            var numTiles : int = columns * rows;
+            var wellIndexes : Vector.<int> = getRandomWellIndexes(numTiles / 20, numTiles);
 
-            for (var i : int = 0; i < columns * rows; i++) {
+            for (var i : int = 0; i < numTiles; i++) {
                 var xPosition:int = i % columns;
                 var yPosition:int = i / columns;
-                var tile:Tile = new Tile(xPosition * 42 + 42 / 2, yPosition * 42 + 42 / 2, resourceLoader);
+                var tileIsWell : Boolean = wellIndexes.indexOf(i) != -1;
+                var tile:Tile = new Tile(xPosition * 42 + 42 / 2, yPosition * 42 + 42 / 2, resourceLoader, tileIsWell);
                 tileContainer.push(tile);
                 if (xPosition != 0) {
                     var leftTile:Tile = tileContainer[i - 1];
@@ -67,5 +70,22 @@ public class BoardBuilder
             }
             return tileContainer;
         }
+
+        private static function getRandomWellIndexes(numWells : int, totalTiles : int) : Vector.<int>
+        {
+            var resultingIndexes : Vector.<int> = new Vector.<int>();
+
+            while (resultingIndexes.length < numWells)
+            {
+                var attemptedIndex : int = Math.random() * totalTiles;
+                if (resultingIndexes.indexOf(attemptedIndex) != -1)
+                {
+                    continue;
+                }
+                resultingIndexes.push(attemptedIndex);
+            }
+            return resultingIndexes;
+        }
+
     }
 }

@@ -1,13 +1,11 @@
 package com.king.apps.gamejam.blue.board
 {
-    import com.king.apps.gamejam.blue.resources.ResourceLoader;
+import com.king.apps.gamejam.blue.resources.ResourceLoader;
 
-    import flash.display.MovieClip;
+import flash.display.Sprite;
+import flash.events.MouseEvent;
 
-    import flash.display.Sprite;
-    import flash.events.MouseEvent;
-
-    public class Tile extends Sprite
+public class Tile extends Sprite
     {
         private var _neighbours : Vector.<Tile>;
         private var _checked : Boolean;
@@ -15,10 +13,12 @@ package com.king.apps.gamejam.blue.board
 
         private var _resourceLoader : ResourceLoader;
         private var _graphics : Sprite;
+        private var _tileIsWell : Boolean;
 
 
-        public function Tile(x : Number, y : Number, resourceLoader : ResourceLoader)
+        public function Tile(x : Number, y : Number, resourceLoader : ResourceLoader, tileIsWell : Boolean)
         {
+            _tileIsWell = tileIsWell;
             _neighbours = new Vector.<Tile>();
             this.x = x;
             this.y = y;
@@ -30,18 +30,6 @@ package com.king.apps.gamejam.blue.board
         public function AddNeighbour(neighbour : Tile) : void {
             _neighbours.push(neighbour)
         }
-
-        public function isChecked() : Boolean
-        {
-            return _checked;
-        }
-
-        public function isWell() : Boolean
-        {
-            return _oil > 0;
-        }
-
-
 
         private function redraw() : void
         {
@@ -65,10 +53,19 @@ package com.king.apps.gamejam.blue.board
 
         private function onMouseClicked(event : MouseEvent) : void
         {
-            if (!_checked)
+            if (_tileIsWell)
+            {
+                handleWellExplored();
+            }
+            else if (!_checked)
             {
                 exploreThisAndNeighbours();
             }
+        }
+
+        private function handleWellExplored() : void
+        {
+            //TODO
         }
 
         private function exploreThisAndNeighbours() : void
@@ -82,7 +79,7 @@ package com.king.apps.gamejam.blue.board
 
         private function exploreTile() : void
         {
-            if (!_checked && !_oil)
+            if (!_checked && !_tileIsWell)
             {
                 _checked = true;
                 redraw();
