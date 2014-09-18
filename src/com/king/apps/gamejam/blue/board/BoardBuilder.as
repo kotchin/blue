@@ -11,14 +11,14 @@ public class BoardBuilder
         {
             switch (type)
             {
-                case TileType.TRIANGLES:
+                case TileGeometryType.TRIANGLES:
                     break;
 
-                case TileType.RECTANGLES:
+                case TileGeometryType.RECTANGLES:
                     return createRectangularTileBoard(columns, rows, resourceLoader);
                     break;
 
-                case TileType.HEXAGONS:
+                case TileGeometryType.HEXAGONS:
                     break;
             }
 
