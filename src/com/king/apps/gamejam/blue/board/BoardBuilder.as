@@ -44,6 +44,12 @@ public class BoardBuilder
                     tile.AddNeighbour(aboveTile);
                     aboveTile.AddNeighbour(tile);
                 }
+                if(xPosition != 0 && yPosition != 0) {
+                    var aboveLeftTile : Tile = tileContainer[i-columns-1];
+                    tile.AddNeighbour(aboveLeftTile);
+                    aboveLeftTile.AddNeighbour(tile);
+                }
+
                 tileContainer.push(tile);
             }
             return new Board(tileContainer);
