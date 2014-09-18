@@ -1,11 +1,13 @@
 package com.king.apps.gamejam.blue.board
 {
-    public class BoardBuilder
+import com.king.apps.gamejam.blue.resources.ResourceLoader;
+
+public class BoardBuilder
     {
         public function BoardBuilder() {
         }
 
-        public static function MakeBoard(type : String, columns : int = 9, rows : int = 12) : Board
+        public static function MakeBoard(type : String, resourceLoader : ResourceLoader, columns : int = 9, rows : int = 12) : Board
         {
             switch (type)
             {
@@ -13,7 +15,7 @@ package com.king.apps.gamejam.blue.board
                     break;
 
                 case TileType.RECTANGLES:
-                    return createRectangularTileBoard(columns, rows);
+                    return createRectangularTileBoard(columns, rows, resourceLoader);
                     break;
 
                 case TileType.HEXAGONS:
@@ -23,7 +25,7 @@ package com.king.apps.gamejam.blue.board
             return null;
         }
 
-        private static function createRectangularTileBoard(columns : int, rows : int) : Board
+        private static function createRectangularTileBoard(columns : int, rows : int, resourceLoader : ResourceLoader) : Board
         {
             var tileContainer : Vector.<Tile>;
 
@@ -31,7 +33,7 @@ package com.king.apps.gamejam.blue.board
             {
                 var xPosition : int = i % columns;
                 var yPosition : int = i / rows;
-                var tile = new Tile(xPosition,yPosition)
+                var tile = new Tile(xPosition,yPosition, resourceLoader);
                 if(xPosition != 0) {
                     var leftTile = tileContainer[i-1];
                     tile.AddNeighbour(leftTile);
