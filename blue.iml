@@ -2,7 +2,7 @@
 <module type="Flex" version="4">
   <component name="FlexBuildConfigurationManager" active="blue">
     <configurations>
-      <configuration name="blue" pure-as="true" main-class="com.king.apps.gamejam.blue.BlueMain" output-file="BlueMain.swf" output-folder="$MODULE_DIR$/out/production/blue">
+      <configuration name="blue" main-class="com.king.apps.gamejam.blue.BlueMain" output-file="blue.swf" output-folder="$MODULE_DIR$/out">
         <dependencies target-player="11.1">
           <sdk name="flex_sdk_4.6" />
         </dependencies>

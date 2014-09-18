@@ -24,7 +24,7 @@ import flash.display.Sprite;
 
         private function addBoard():void
         {
-            _board = BoardBuilder.makeBoard(TileType.RECTANGLES);
+            _board = BoardBuilder.MakeBoard(TileType.RECTANGLES);
             addChild(_board);
         }
     }

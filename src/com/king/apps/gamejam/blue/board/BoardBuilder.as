@@ -5,8 +5,7 @@ package com.king.apps.gamejam.blue.board
         public function BoardBuilder() {
         }
 
-
-        public static function makeBoard(type : String, columns : int = 9, rows : int = 12) : Board
+        public static function MakeBoard(type : String, columns : int = 9, rows : int = 12) : Board
         {
             switch (type)
             {
@@ -19,7 +18,6 @@ package com.king.apps.gamejam.blue.board
 
                 case TileType.HEXAGONS:
                     break;
-
             }
 
             return null;
@@ -27,15 +25,26 @@ package com.king.apps.gamejam.blue.board
 
         private static function createRectangularTileBoard(columns : int, rows : int) : Board
         {
-            var tiles : Vector.<Tile> = new Vector.<Tile>();
+            var tileContainer : Vector.<Tile>;
 
             for (var i : int = 0; i < columns * rows; i++)
             {
-                tiles.push(new Tile(i % columns, i / rows));
+                var xPosition : int = i % columns;
+                var yPosition : int = i / rows;
+                var tile = new Tile(xPosition,yPosition)
+                if(xPosition != 0) {
+                    var leftTile = tileContainer[i-1];
+                    tile.AddNeighbour(leftTile);
+                    leftTile.AddNeighbour(tile);
+                }
+                if(yPosition != 0) {
+                    var aboveTile = tileContainer[i-columns];
+                    tile.AddNeighbour(aboveTile);
+                    aboveTile.AddNeighbour(tile);
+                }
+                tileContainer.push();
             }
-
-            return new Board(tiles);
+            return new Board(tileContainer);
         }
-
     }
 }
