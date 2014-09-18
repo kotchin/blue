@@ -8,6 +8,7 @@ import com.king.apps.gamejam.blue.resources.ResourceLoader;
 import flash.display.Sprite;
     import flash.text.TextField;
 
+    [SWF(backgroundColor="#000000", width="400", height="528", frameRate="60")]
     public class BlueMain extends Sprite
     {
         private var _board : Board;
