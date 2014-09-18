@@ -2,7 +2,7 @@ package com.king.apps.gamejam.blue {
 
 import com.king.apps.gamejam.blue.board.Board;
 import com.king.apps.gamejam.blue.board.BoardBuilder;
-import com.king.apps.gamejam.blue.board.TileType;
+import com.king.apps.gamejam.blue.board.TileGeometryType;
 import com.king.apps.gamejam.blue.resources.ResourceLoader;
 
 import flash.display.Sprite;
@@ -33,7 +33,7 @@ import flash.display.Sprite;
 
         private function addBoard():void
         {
-            _board = BoardBuilder.MakeBoard(TileType.RECTANGLES, _resourceLoader);
+            _board = BoardBuilder.MakeBoard(TileGeometryType.RECTANGLES, _resourceLoader);
             addChild(_board);
         }
     }
