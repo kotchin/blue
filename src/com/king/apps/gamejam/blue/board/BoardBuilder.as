@@ -22,12 +22,19 @@ package com.king.apps.gamejam.blue.board
 
             }
 
-            return new Board();
+            return null;
         }
 
-        private static function createRectangularTileBoard(columns : int, rows : int):Board
+        private static function createRectangularTileBoard(columns : int, rows : int) : Board
         {
+            var tiles : Vector.<Tile> = new Vector.<Tile>();
 
+            for (var i : int = 0; i < columns * rows; i++)
+            {
+                tiles.push(new Tile(i % columns, i / rows));
+            }
+
+            return new Board(tiles);
         }
 
     }
