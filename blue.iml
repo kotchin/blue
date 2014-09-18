@@ -3,7 +3,7 @@
   <component name="FlexBuildConfigurationManager" active="blue">
     <configurations>
       <configuration name="blue" main-class="com.king.apps.gamejam.blue.BlueMain" output-file="blue.swf" output-folder="$MODULE_DIR$/out">
-        <dependencies target-player="11.1">
+        <dependencies target-player="11.1" framework-linkage="Merged">
           <sdk name="flex_sdk_4.6" />
         </dependencies>
         <compiler-options />

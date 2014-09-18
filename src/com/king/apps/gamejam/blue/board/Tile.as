@@ -13,11 +13,12 @@ public class Tile extends Sprite
         private var _oil : int;
 
         private var _resourceLoader : ResourceLoader;
-        private var _graphics : MovieClip;
+        private var _graphics : Sprite;
 
 
         public function Tile(x : Number, y : Number, resourceLoader : ResourceLoader)
         {
+            _neighbours = new Vector.<Tile>();
             this.x = x;
             this.y = y;
             _resourceLoader = resourceLoader;
@@ -25,7 +26,7 @@ public class Tile extends Sprite
             redraw();
         }
 
-        public function AddNeighbour(neighbour : Tile) {
+        public function AddNeighbour(neighbour : Tile) : void {
             _neighbours.push(neighbour)
         }
 
